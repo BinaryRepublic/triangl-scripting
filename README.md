@@ -3,7 +3,7 @@
 Collection of shell scripts to handle different tasks such as automated slack notifications
 
 
-## triangl-packet-updater.sh
+## triangl-packet-updater
 Run on openWRT before starting:
 
 ```bash
