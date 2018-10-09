@@ -2,6 +2,8 @@
 
 Collection of shell scripts to handle different tasks such as automated slack notifications
 
+On Device the files should be located in /root/scripts
+
 
 ## triangl-packet-updater
 Run on openWRT before starting:
