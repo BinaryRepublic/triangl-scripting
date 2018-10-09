@@ -8,7 +8,7 @@ Run on openWRT before starting:
 
 ```bash
 opkg update
-opkg install jd
+opkg install jq
 opkg install curl
 ```
 
