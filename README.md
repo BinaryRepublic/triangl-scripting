@@ -18,5 +18,5 @@ Don't forget to insert API token.
 
 Script queries circleCI API for successful builds, if a new one is found it is downloaded and installed.
 
-## Router IP updater
+## triangl-router-ip-updater
 Shell scripts, that sends a notification in a slack channel if the ip address of one of our routers changes.
