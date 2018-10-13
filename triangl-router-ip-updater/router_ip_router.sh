@@ -1,7 +1,9 @@
 #!/bin/bash
 TOKEN='xoxp-432130389943-431266889157-441832687649-f2994c3752584d6933b9b4c965dd3977'
 MESSAGE='Hello World'
+LAST_RESET=$(date +%d)
 source ./.router_update_log
+
 
 while true
 do
@@ -66,9 +68,18 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "4s/.*/RASPPI=$raspPi/" .router_update_log
+			sed -i -e "5s/.*/RASPPI=$raspPi/" .router_update_log
 		fi
 	done
+	current_day=$(date +%d)
+	if [ "$current_day" -ne "$LAST_RESET" ]; then
+		sed -i -e "1s/.*/IP79=/" .router_update_log
+		sed -i -e "2s/.*/IPD4=/" .router_update_log
+		sed -i -e "3s/.*/IPE6=/" .router_update_log
+		sed -i -e "4s/.*/IP6E=/" .router_update_log
+		sed -i -e "5s/.*/RASPPI=/" .router_update_log
+		source ./.router_update_log
+	fi
 done
 
 #curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $TOKEN" --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}" https://slack.com/api/chat.postMessage
