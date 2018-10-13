@@ -56,6 +56,18 @@ do
 			 https://slack.com/api/chat.postMessage > /dev/null
 			sed -i -e "4s/.*/IP6E=$ip6E/" .router_update_log
 		fi
+		raspPI=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 B8:27:EB:0B:93:31 | \
+		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
+		if [ "$raspPi" != "$RASPPI" ] && [ "$raspPi" != "" ]
+		then
+			MESSAGE="The new ip address of our Rasperry pi is $raspPi"
+			RASPPI="$raspPi"
+			curl -X POST -H "Content-Type: application/json"\
+			 -H "Authorization: Bearer $TOKEN"\
+			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
+			 https://slack.com/api/chat.postMessage > /dev/null
+			sed -i -e "4s/.*/RASPPI=$raspPi/" .router_update_log
+		fi
 	done
 done
 
