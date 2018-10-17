@@ -1,0 +1,32 @@
+#! /bin/sh
+# /etc/init.d/rip_updater
+
+### BEGIN INIT INFO
+# Provides:          rip_updater
+# Required-Start:    $all
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Simple script to start a an router ip updater at boot
+# Description:       simple script from www.stuffaboutcode.com which will start / stop a program a boot / shutdown.
+### END INIT INFO
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting router ip updater"
+    # run application you want to start
+    bash /usr/local/bin/rip_updater.sh
+    ;;
+  stop)
+    echo "Stopping router ip updater"
+    # kill application you want to stop
+    pkill rip_updater
+    ;;
+  *)
+    echo "Usage: /etc/init.d/rip_updater {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,8 +1,8 @@
 #!/bin/bash
-TOKEN='xoxp-432130389943-431266889157-441832687649-f2994c3752584d6933b9b4c965dd3977'
+TOKEN='xoxp-432130389943-431266889157-456058349891-69bf2bd5b91ea94b136153d4cd2a037f'
 MESSAGE='Hello World'
 LAST_RESET=$(date +%d)
-source ./.router_update_log
+source '/usr/local/share/router_ip_updater_log/.router_update_log'
 
 
 while true
@@ -20,7 +20,7 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "1s/.*/IP79=$ip79/" .router_update_log
+			sudo sed -i -e "1s/.*/IP79=$ip79/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
 		ipD4=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C9:D4 | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
@@ -32,7 +32,7 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "2s/.*/IPD4=$ipD4/" .router_update_log
+			sudo sed -i -e "2s/.*/IPD4=$ipD4/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
 		ipE6=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C0:E6 | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
@@ -44,7 +44,7 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "3s/.*/IPE6=$ipE6/" .router_update_log
+			sudo sed -i -e "3s/.*/IPE6=$ipE6/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
 		ip6E=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C0:6E | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
@@ -56,10 +56,9 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "4s/.*/IP6E=$ip6E/" .router_update_log
+			sudo sed -i -e "4s/.*/IP6E=$ip6E/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
-		raspPI=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 B8:27:EB:0B:93:31 | \
-		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
+		raspPi=$(ifconfig | grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+' | grep -e '^10\.0\.' | grep -v -e '10\.0\.7\.255')
 		if [ "$raspPi" != "$RASPPI" ] && [ "$raspPi" != "" ]
 		then
 			MESSAGE="The new ip address of our Rasperry pi is $raspPi"
@@ -68,17 +67,18 @@ do
 			 -H "Authorization: Bearer $TOKEN"\
 			 --data "{\"channel\":\"hardware_updates\",\"text\":\"$MESSAGE\"}"\
 			 https://slack.com/api/chat.postMessage > /dev/null
-			sed -i -e "5s/.*/RASPPI=$raspPi/" .router_update_log
+			sudo sed -i -e "5s/.*/RASPPI=$raspPi/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
 	done
 	current_day=$(date +%d)
 	if [ "$current_day" -ne "$LAST_RESET" ]; then
-		sed -i -e "1s/.*/IP79=/" .router_update_log
-		sed -i -e "2s/.*/IPD4=/" .router_update_log
-		sed -i -e "3s/.*/IPE6=/" .router_update_log
-		sed -i -e "4s/.*/IP6E=/" .router_update_log
-		sed -i -e "5s/.*/RASPPI=/" .router_update_log
-		source ./.router_update_log
+		sudo sed -i -e "1s/.*/IP79=/" '/usr/local/share/router_ip_updater_log/.router_update_log'
+		sudo sed -i -e "2s/.*/IPD4=/" '/usr/local/share/router_ip_updater_log/.router_update_log'
+		sudo sed -i -e "3s/.*/IPE6=/" '/usr/local/share/router_ip_updater_log/.router_update_log'
+		sudo sed -i -e "4s/.*/IP6E=/" '/usr/local/share/router_ip_updater_log/.router_update_log'
+		sudo sed -i -e "5s/.*/RASPPI=/" '/usr/local/share/router_ip_updater_log/.router_update_log'
+		source '/usr/local/share/router_ip_updater_log/.router_update_log'
+		LAST_RESET=$current_day
 	fi
 done
 
