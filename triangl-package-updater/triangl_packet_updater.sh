@@ -26,7 +26,7 @@ check_updates() {
 download_packet() {
     DOWNLOAD_URL=$(curl -s https://circleci.com/api/v1.1/project/github/codeuniversity/$REPO/$LATEST_SUCCESSFUL_BUILD/artifacts?circle-token=$API_TOKEN | jq -r '.[0] | .url')
     echo Downloading packet
-    curl -s -o $PACKET_NAME.ipk -L -k $DOWNLOAD_URL
+    curl -s -o $PACKET_NAME.ipk -L -k $DOWNLOAD_URL?circle-token=$API_TOKEN
     install_packet
 }
 
