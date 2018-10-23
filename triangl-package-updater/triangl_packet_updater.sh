@@ -10,7 +10,7 @@ REPO=triangl-rssi-polling
 API_TOKEN=09c8364f8a03ab05ae12c36e20385929924c3360 
 
 check_updates() {
-    source buildnum
+    source /triangl-package-updater/buildnum
     LATEST_SUCCESSFUL_BUILD=$(curl -s https://circleci.com/api/v1.1/project/github/codeuniversity/$REPO?circle-token\=$API_TOKEN\&limit\=20\&filter\=successful | jq '.[0] | .build_num')
 
     if [ $LATEST_SUCCESSFUL_BUILD -gt $INSTALLED_BUILD ]
@@ -33,7 +33,7 @@ download_packet() {
 
 install_packet() {
     echo Installing packet $PACKET_NAME.
-    opkg remove $EXENAME
+    opkg remove $EXE_NAME
     opkg install $PACKET_NAME.ipk
     if [ $? -eq 0 ]; then
         echo Successful install of build no. $LATEST_SUCCESSFUL_BUILD of $PACKET_NAME.
