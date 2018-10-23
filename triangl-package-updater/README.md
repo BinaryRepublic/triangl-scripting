@@ -1,7 +1,7 @@
 # Installation
 
 ```bash
-scp -R triangl-package-updater root@<IP Address>:/
+scp -r triangl-package-updater root@<IP Address>:/
 ```
 
 ```bash
