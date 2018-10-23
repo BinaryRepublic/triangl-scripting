@@ -7,13 +7,14 @@ do
         then
                 continue
         else
-                sh /triangl-package-updater/triangl_airo_init.sh &
+                sh /triangl-package-updater/triangl_airo_init.sh > /dev/null 2> /dev/null &
         fi
 	sleep 2
 	if ps | grep -q "[h]elloworld"
 	then
 		continue
 	else
-		helloworld &
+		# TODO: Add logging
+		helloworld > /dev/null &
 	fi
 done
