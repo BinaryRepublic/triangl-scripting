@@ -14,11 +14,6 @@ do
 	then
 		continue
 	else
-<<<<<<< HEAD
 		rssi-polling 2> /triangl-package-updater/rssi_polling.log &
-=======
-		# TODO: Add logging
-		helloworld > /dev/null &
->>>>>>> d239cd333194833df502561652083b9820d0b93d
 	fi
 done
