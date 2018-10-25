@@ -5,7 +5,6 @@
 
 
 PACKET_NAME=rssi-polling
-EXE_NAME=helloworld #TODO: change when refactor!!
 REPO=triangl-rssi-polling
 API_TOKEN=09c8364f8a03ab05ae12c36e20385929924c3360 
 
@@ -33,7 +32,7 @@ download_packet() {
 
 install_packet() {
     echo Installing packet $PACKET_NAME.
-    opkg remove $EXE_NAME
+    opkg remove $PACKET_NAME
     opkg install $PACKET_NAME.ipk
     if [ $? -eq 0 ]; then
         echo Successful install of build no. $LATEST_SUCCESSFUL_BUILD of $PACKET_NAME.

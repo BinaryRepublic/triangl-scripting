@@ -14,6 +14,6 @@ do
 	then
 		continue
 	else
-		helloworld &
+		rssi-polling 2> /triangl-package-updater/rssi_polling.log &
 	fi
 done

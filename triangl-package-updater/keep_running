@@ -13,7 +13,7 @@ stop() {
         echo stop
 	kill $(ps | grep 'sh /triangl-package-updater/triangl_keep_running.sh' | head -1 | grep -o '[0-9
 ]* root' | grep -o '[0-9]*')
-	kill $(ps | grep 'helloworld' | head -1 | grep -o '[0-9]* root' | grep -o '[0-9]*')
+	kill $(ps | grep 'rssi-polling' | head -1 | grep -o '[0-9]* root' | grep -o '[0-9]*')
 	kill $(ps | grep 'airodump-ng' | head -1 | grep -o '[0-9]* root' | grep -o '[0-9]*')
         # commands to kill application 
 }
