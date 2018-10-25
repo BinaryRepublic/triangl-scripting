@@ -8,7 +8,7 @@ scp -r triangl-package-updater root@<IP Address>:/
 
 ```bash
 mv /triangl-package-updater/keep_running /etc/init.d/
-sh /triangl-package-updater/triangl_package_updater.sh
+sh /triangl-package-updater/triangl_packet_updater.sh
 cat /etc/config/network | grep 'macaddr' | grep -o '.\{2\}:.\{2\}:.\{2\}:.\{2\}:.\{2\}:.\{2\}' | tr [a-z] [A-Z] >\
 /triangl-package-updater/my_mac
 ```

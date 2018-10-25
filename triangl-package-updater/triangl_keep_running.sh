@@ -10,7 +10,7 @@ do
                 sh /triangl-package-updater/triangl_airo_init.sh > /dev/null 2> /dev/null &
         fi
 	sleep 2
-	if ps | grep -q "[h]elloworld"
+	if ps | grep -q "[r]ssi-polling"
 	then
 		continue
 	else
