@@ -21,7 +21,7 @@ cat /etc/config/network | grep 'macaddr' | grep -o '.\{2\}:.\{2\}:.\{2\}:.\{2\}:
 ```
 
 ```bash
-/ect/init.d/keep_running stop
+/etc/init.d/keep_running stop
 ```
 
 Check using `ps` if all of the following processes were terminated correctly:
