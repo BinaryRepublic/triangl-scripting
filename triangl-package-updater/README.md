@@ -25,7 +25,7 @@ cat /etc/config/network | grep 'macaddr' | grep -o '.\{2\}:.\{2\}:.\{2\}:.\{2\}:
 ```
 
 Check using `ps` if all of the following processes were terminated correctly:
-- `helloworld`
+- `rssi-rssi-polling`
 - `sh /triangl-package-updater/triangl_keep_running.sh`
 - `airodump-ng --output-format csv --write test.csv --channel 6 --berlin 14 mon0`
 
