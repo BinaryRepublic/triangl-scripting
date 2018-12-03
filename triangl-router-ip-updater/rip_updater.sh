@@ -10,7 +10,7 @@ do
 	for sn in 1 2 3 4 5 6 7
 	#for sn in 4
 	do
-		ip79=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:BE:79 | \
+		ip79=$(sudo nmap -sP 10.0.$sn.1/24 | grep -B 2 AC:84:C6:E8:BE:79 | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
 		if [ "$ip79" != "$IP79" ] && [ "$ip79" != "" ]
 		then
@@ -22,7 +22,7 @@ do
 			 https://slack.com/api/chat.postMessage > /dev/null
 			sudo sed -i -e "1s/.*/IP79=$ip79/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
-		ipD4=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C9:D4 | \
+		ipD4=$(sudo nmap -sP 10.0.$sn.1/24 | grep -B 2 AC:84:C6:E8:C9:D4 | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
 		if [ "$ipD4" != "$IPD4" ] && [ "$ipD4" != "" ]
 		then
@@ -34,7 +34,7 @@ do
 			 https://slack.com/api/chat.postMessage > /dev/null
 			sudo sed -i -e "2s/.*/IPD4=$ipD4/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
-		ipE6=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C0:E6 | \
+		ipE6=$(sudo nmap -sP 10.0.$sn.1/24 | grep -B 2 AC:84:C6:E8:C0:E6 | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
 		if [ "$ipE6" != "$IPE6" ] && [ "$ipE6" != "" ]
 		then
@@ -46,7 +46,7 @@ do
 			 https://slack.com/api/chat.postMessage > /dev/null
 			sudo sed -i -e "3s/.*/IPE6=$ipE6/" '/usr/local/share/router_ip_updater_log/.router_update_log'
 		fi
-		ip6E=$(sudo nmap -sP 10.0.$sn.1/25 | grep -B 2 AC:84:C6:E8:C0:6E | \
+		ip6E=$(sudo nmap -sP 10.0.$sn.1/24 | grep -B 2 AC:84:C6:E8:C0:6E | \
 		grep -o -e '[0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+')
 		if [ "$ip6E" != "$IP6E" ] && [ "$ip6E" != "" ]
 		then
