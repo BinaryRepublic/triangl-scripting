@@ -6,7 +6,7 @@
 
 PACKET_NAME=rssi-polling
 REPO=triangl-rssi-polling
-API_TOKEN=09c8364f8a03ab05ae12c36e20385929924c3360 
+API_TOKEN=--circleci-token--
 
 check_updates() {
     source /triangl-package-updater/buildnum

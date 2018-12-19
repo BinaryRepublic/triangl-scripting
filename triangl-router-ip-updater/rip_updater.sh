@@ -1,5 +1,5 @@
 #!/bin/bash
-TOKEN='xoxp-432130389943-431266889157-456058349891-69bf2bd5b91ea94b136153d4cd2a037f'
+TOKEN='--slack-token--'
 MESSAGE='Hello World'
 LAST_RESET=$(date +%d)
 source '/usr/local/share/router_ip_updater_log/.router_update_log'
